@@ -1,0 +1,14 @@
+
+mkdir -p scss
+
+for dir in base components elements grid layout utilities
+do
+  sass-convert -R sass/$dir -F sass -T scss
+  mkdir -p scss/$dir
+  mv sass/$dir/*.scss scss/$dir
+  sed -i "" "s/\\.sass//g" scss/$dir/*.scss
+done
+
+sass-convert bulma.sass -F sass -T scss > bulma.scss
+sed -i "" "s/\\.sass//g" bulma.scss
+sed -i "" "s/sass\//scss\//g" bulma.scss
